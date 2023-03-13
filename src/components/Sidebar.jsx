@@ -171,7 +171,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" align="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    BeyondTheNorm
+                    DLYA DASHBOARD
                   </Typography>
                 </Box>
                 {!isNonMobile && (
