@@ -21,7 +21,7 @@ const Products = () => {
           columnGap="1.33%"
           sx={{ "& > div": { gridColumn: isNonMobile ? undefined : "span 4" } }}
         >
-          {data.data.map(
+          {data?.data?.map(
             (
               {
                 _id,
