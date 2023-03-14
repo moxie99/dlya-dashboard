@@ -15,6 +15,10 @@ export const api = createApi({
     "Dashboard",
     "Courses",
     "Pools",
+    "Events",
+    "Accomodation",
+    "Feeds",
+    "Groups",
   ],
   endpoints: (build) => ({
     getUser: build.query({
@@ -66,6 +70,22 @@ export const api = createApi({
       query: () => "/pool/pools",
       providesTags: ["Pools"],
     }),
+    getEvents: build.query({
+      query: () => "/event/get-events",
+      providesTags: ["Events"],
+    }),
+    getAccommodation: build.query({
+      query: () => "/accomodation/get-accomodation",
+      providesTags: ["Accomodation"],
+    }),
+    getFeeds: build.query({
+      query: () => "/feeds/",
+      providesTags: ["Feeds"],
+    }),
+    getGroups: build.query({
+      query: () => "/chat/get-groups-info",
+      providesTags: ["Groups"],
+    }),
   }),
 })
 
@@ -81,4 +101,8 @@ export const {
   useGetDashboardQuery,
   useGetCoursesQuery,
   useGetPoolsQuery,
+  useGetEventsQuery,
+  useGetAccommodationQuery,
+  useGetFeedsQuery,
+  useGetGroupsQuery,
 } = api

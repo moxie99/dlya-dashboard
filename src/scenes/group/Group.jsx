@@ -1,53 +1,67 @@
 import React, { useState } from "react"
 import { DataGrid } from "@mui/x-data-grid"
 import Header from "components/Header"
-import { useGetFeedsQuery, useGetTransactionsQuery } from "state/api"
+import {
+  useGetFeedsQuery,
+  useGetGroupsQuery,
+  useGetTransactionsQuery,
+} from "state/api"
 import { Box, useTheme } from "@mui/material"
 import DataGridCustomToolbar from "components/DataGridCustomToolbar"
 
-const Transactions = () => {
+const Groups = () => {
   const theme = useTheme()
 
-  const { data, isLoading } = useGetFeedsQuery()
+  const { data, isLoading } = useGetGroupsQuery()
 
-  const feedsArray = []
-
-  data?.data?.forEach((feed) => {
-    feedsArray.push(feed?.feeds)
-  })
-
-  console.log("data", feedsArray)
   const columns = [
     { field: "_id", headerName: "ID", flex: 1 },
-    { field: "title", headerName: "Title", flex: 1 },
-    { field: "description", headerName: "Description", flex: 1 },
     {
-      field: "reacted",
-      headerName: "Number of Reactions",
+      field: "questions",
+      headerName: "Number Of Questions In Group",
       flex: 1,
       sortable: false,
       renderCell: (params) => params.value.length,
     },
     {
-      field: "comments",
-      headerName: "Number of Comments",
-      flex: 0.5,
+      field: "answers",
+      headerName: "Number Of answers In Group",
+      flex: 1,
       sortable: false,
       renderCell: (params) => params.value.length,
     },
     {
-      field: "likes",
-      headerName: "Likes",
+      field: "bio",
+      headerName: "Group Description",
       flex: 0.5,
+      sortable: false,
+      renderCell: (params) => params.value.length,
     },
+    { field: "group_name", headerName: "Group Name", flex: 1 },
     {
-      field: "images",
+      field: "group_members",
+      headerName: "Group Members",
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => params.value.length,
+    },
+
+    {
+      field: "files",
+      headerName: "Files Exchanged In Groups",
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => params.value.length,
+    },
+
+    {
+      field: "profile",
       headerName: "Image",
       width: 150,
       height: 150,
       borderRadius: 75,
       editable: true,
-      renderCell: (params) => <img src={params.value[0]} />, // renderCell will render the component
+      renderCell: (params) => <img src={params.value} />, // renderCell will render the component
     },
   ]
   return (
@@ -101,7 +115,7 @@ const Transactions = () => {
         */}
         <DataGrid
           loading={isLoading || !data}
-          rows={feedsArray || []}
+          rows={data?.data || []}
           getRowId={(row) => row._id}
           columns={columns}
         />
@@ -110,4 +124,4 @@ const Transactions = () => {
   )
 }
 
-export default Transactions
+export default Groups

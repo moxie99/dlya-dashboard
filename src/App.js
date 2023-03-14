@@ -18,6 +18,12 @@ import Admin from "scenes/admin"
 import Performance from "scenes/performance"
 import CreateCourse from "scenes/courses"
 import CreatePool from "scenes/pool"
+import AddPoolObject from "scenes/AddPoolObject"
+import AddAccomodation from "scenes/accomodation"
+import AddFeed from "scenes/feed"
+import Addgroup from "scenes/group"
+import Groups from "scenes/group/Group"
+
 function App() {
   const mode = useSelector((state) => state.global.mode)
 
@@ -31,7 +37,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/courses" element={<Products />} />
+              <Route path="/allcourses" element={<Products />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/geography" element={<Geography />} />
@@ -43,6 +49,13 @@ function App() {
               <Route path="/performance" element={<Performance />} />
               <Route path="/addcourse" element={<CreateCourse />} />
               <Route path="/Createpool" element={<CreatePool />} />
+              <Route path="/addpoolobject" element={<AddPoolObject />} />
+              <Route path="/accomodations" element={<Customers />} />
+              <Route path="/addaccomodation" element={<AddAccomodation />} />
+              <Route path="/addFeed" element={<AddFeed />} />
+              <Route path="/feeds" element={<Transactions />} />
+              <Route path="/creategroup" element={<Addgroup />} />
+              <Route path="/groups" element={<Groups />} />
             </Route>
           </Routes>
         </ThemeProvider>

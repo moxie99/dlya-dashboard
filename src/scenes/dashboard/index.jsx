@@ -12,13 +12,49 @@ import { Box, Button, Typography, useTheme, useMediaQuery } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import BreakdownChart from "components/BreakdownChart"
 import OverviewChart from "components/OverviewChart"
-import { useGetDashboardQuery } from "state/api"
+import {
+  useGetDashboardQuery,
+  useGetEventsQuery,
+  useGetPoolsQuery,
+} from "state/api"
 import StatBox from "components/StatBox"
 
 const Dashboard = () => {
   const theme = useTheme()
 
-  const { data, isLoading } = useGetDashboardQuery()
+  const { data, isLoading } = useGetPoolsQuery()
+
+  const arr1 = data?.data[0]?.poolList
+  const arr2 = data?.data[1]?.poolList
+
+  const poolList = arr1?.concat(arr2)
+  {
+    /*const { data, isLoading } = useGetEventsQuery()
+  console.log("data", data)
+  */
+  }
+
+  const colors = [
+    theme.palette.secondary[500],
+    theme.palette.primary[100],
+    theme.palette.primary[200],
+    theme.palette.primary[300],
+    theme.palette.primary[400],
+    theme.palette.primary[500],
+    theme.palette.secondary[300],
+    theme.palette.secondary[100],
+    theme.palette.secondary[600],
+    theme.palette.secondary[400],
+  ]
+
+  const fData = poolList?.map(({ object, _id, voteCount }, i) => {
+    return {
+      id: _id,
+      label: object,
+      value: Number(voteCount),
+      color: colors[i],
+    }
+  })
 
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px")
 
@@ -40,10 +76,11 @@ const Dashboard = () => {
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ]
+
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DASHBOARD" subtitle="Welcome to DLYA dashboard" />
 
         <Box>
           <Button
@@ -72,8 +109,8 @@ const Dashboard = () => {
         }}
       >
         <StatBox
-          title="Total Customers"
-          value={data && data.totalCustomers}
+          title="Total Registered Members"
+          value={100}
           increase="+10%"
           description="Since Last Month"
           icon={
@@ -84,8 +121,8 @@ const Dashboard = () => {
         />
 
         <StatBox
-          title="Sales Today"
-          value={data && data.todayStats.totalSales}
+          title="Visits Today"
+          value={100}
           increase="+13%"
           description="Since Yesterday"
           icon={
@@ -106,8 +143,8 @@ const Dashboard = () => {
         </Box>
 
         <StatBox
-          title="Monthly Sales"
-          value={data && data.thisMonthStats.totalSales}
+          title="Monthly Visits"
+          value={200}
           increase="+8%"
           description="Since Last Month"
           icon={
@@ -118,8 +155,8 @@ const Dashboard = () => {
         />
 
         <StatBox
-          title="Yearly Sales"
-          value={data && data.yearlySalesTotal}
+          title="Yearly Visits"
+          value={3000}
           increase="+33%"
           description="Since Last Year"
           icon={
@@ -152,12 +189,12 @@ const Dashboard = () => {
             },
           }}
         >
-          <DataGrid
-            loading={isLoading || !data}
-            getRowId={(row) => row._id}
-            rows={(data && data.transactions) || []}
-            columns={columns}
-          />
+          {/*<DataGrid
+          loading={isLoading || !data}
+          getRowId={(row) => row._id}
+          rows={(data && data.transactions) || []}
+          columns={columns}
+          />*/}
         </Box>
 
         <Box
@@ -168,16 +205,15 @@ const Dashboard = () => {
           borderRadius="0.6rem"
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
+            Pool Statistics
           </Typography>
-          <BreakdownChart isDashboard={true} />
+          <BreakdownChart isDashboard={true} dataExpected={fData || []} />
           <Typography
             p="0 0.6rem"
             fontSize="0.8rem"
             sx={{ color: theme.palette.secondary[200] }}
           >
-            Breakdown of real States and Information for sales and revenue this
-            year
+            Breakdown of pools and vists Information for this year
           </Typography>
         </Box>
       </Box>

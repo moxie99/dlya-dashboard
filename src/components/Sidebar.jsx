@@ -28,6 +28,11 @@ import {
   TrendingUpOutlined,
   PieChartOutlined,
   AddBusinessOutlined,
+  AddLinkOutlined,
+  HomeMaxOutlined,
+  FeedOutlined,
+  GroupAddOutlined,
+  GroupOutlined,
 } from "@mui/icons-material"
 
 import { useLocation, useNavigate } from "react-router-dom"
@@ -48,7 +53,7 @@ const navItems = [
     icon: <AddBusinessOutlined />,
   },
   {
-    text: "Courses",
+    text: "AllCourses",
     icon: <ShoppingCartOutlined />,
   },
   {
@@ -72,6 +77,10 @@ const navItems = [
     icon: <AddBusinessOutlined />,
   },
   {
+    text: "AddPoolObject",
+    icon: <AddLinkOutlined />,
+  },
+  {
     text: "Overview",
     icon: <PointOfSaleOutlined />,
   },
@@ -79,6 +88,7 @@ const navItems = [
     text: "Daily",
     icon: <TodayOutlined />,
   },
+
   {
     text: "Monthly",
     icon: <CalendarMonthOutlined />,
@@ -90,6 +100,14 @@ const navItems = [
   {
     text: "Accomodation",
     icon: null,
+  },
+  {
+    text: "Accomodations",
+    icon: <HomeMaxOutlined />,
+  },
+  {
+    text: "AddAccomodation",
+    icon: <AddBusinessOutlined />,
   },
   {
     text: "Admins",
@@ -104,8 +122,24 @@ const navItems = [
     icon: null,
   },
   {
+    text: "Feeds",
+    icon: <FeedOutlined />,
+  },
+  {
+    text: "AddFeed",
+    icon: <AddBusinessOutlined />,
+  },
+  {
     text: "Groups",
     icon: null,
+  },
+  {
+    text: "Groups",
+    icon: <GroupOutlined />,
+  },
+  {
+    text: "CreateGroup",
+    icon: <GroupAddOutlined />,
   },
   {
     text: "Chat",

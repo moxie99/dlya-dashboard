@@ -7,17 +7,18 @@ import {
   Stack,
   useTheme,
 } from "@mui/material"
+import CustomButton from "components/CustomButton"
+import Header from "components/Header"
 import { useState } from "react"
-import CustomButton from "./CustomButton"
-import Header from "./Header"
 
-const Form = ({
+const AddAccomodation = ({
   type,
   register,
   handleSubmit,
   handleImageChange,
   formLoading,
   onFinishHandler,
+  propertyImage,
 }) => {
   const theme = useTheme()
   const [title, setTitle] = useState("")
@@ -30,21 +31,9 @@ const Form = ({
   const [totalHours, setTotalHours] = useState("")
   const [courseOutline, setCourseOutline] = useState("")
 
-  console.log({
-    title,
-    instructor,
-    description,
-    tableOfContent,
-    courses,
-    category,
-    videoclip,
-    totalHours,
-    courseOutline,
-  })
-
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="COURSE" subtitle="Create a course here" />
+      <Header title="ACCOMODATION" subtitle="Add An Accomodation" />
       <Box
         mt={2.5}
         borderRadius="15px"
@@ -69,7 +58,7 @@ const Form = ({
                 color: "#11142d",
               }}
             >
-              Enter Course Title
+              Enter Full Name
             </FormHelperText>
             <TextField
               fullWidth
@@ -77,7 +66,7 @@ const Form = ({
               color="info"
               variant="outlined"
               id="outlined-basic"
-              label="Course Title"
+              label="Full Name"
               onChange={(event) => {
                 setTitle(event.target.value)
               }}
@@ -92,7 +81,7 @@ const Form = ({
                 color: "#11142d",
               }}
             >
-              Enter Course Instructor
+              Enter Accomodation Type
             </FormHelperText>
             <TextField
               fullWidth
@@ -100,7 +89,7 @@ const Form = ({
               color="info"
               variant="outlined"
               id="outlined-basic"
-              label="Course Instructor"
+              label="Accomodation Type"
               onChange={(event) => {
                 setInstructor(event.target.value)
               }}
@@ -115,13 +104,13 @@ const Form = ({
                 color: "#11142d",
               }}
             >
-              Enter Course Description
+              Enter Accomodation Location
             </FormHelperText>
             <TextField
               multiline
               rows={4}
               required
-              placeholder="Write Course description"
+              placeholder="Write Short Location description"
               color="info"
               style={{
                 width: "100%",
@@ -148,17 +137,16 @@ const Form = ({
                   color: "#11142d",
                 }}
               >
-                Enter CourseOutline
+                Enter Bed Number
               </FormHelperText>
               <TextField
                 fullWidth
                 required
                 multiline
-                rows={4}
                 color="info"
                 variant="outlined"
                 id="outlined-basic"
-                label="Course Outline"
+                label="Beds"
                 onChange={(event) => {
                   setCourseOutline(event.target.value)
                 }}
@@ -173,7 +161,7 @@ const Form = ({
                   color: "#11142d",
                 }}
               >
-                Enter Course total_hours
+                Enter price
               </FormHelperText>
               <TextField
                 fullWidth
@@ -198,7 +186,7 @@ const Form = ({
                 color: "#11142d",
               }}
             >
-              Enter Course Content
+              Enter roommate Number
             </FormHelperText>
             <TextField
               fullWidth
@@ -212,78 +200,6 @@ const Form = ({
             />
           </FormControl>
 
-          <FormControl>
-            <FormHelperText
-              sx={{
-                fontWeight: 500,
-                margin: "10px 0",
-                fontSize: 16,
-                color: "#11142d",
-              }}
-            >
-              Enter Courses
-            </FormHelperText>
-            <TextField
-              fullWidth
-              required
-              id="outlined-basic"
-              color="info"
-              variant="outlined"
-              onChange={(event) => {
-                setCourses(event.target.value)
-              }}
-            />
-          </FormControl>
-
-          <Stack direction="row" gap={4}>
-            <FormControl sx={{ flex: 1 }}>
-              <FormHelperText
-                sx={{
-                  fontWeight: 500,
-                  margin: "10px 0",
-                  fontSize: 16,
-                  color: "#11142d",
-                }}
-              >
-                Select Course Category
-              </FormHelperText>
-              <TextField
-                fullWidth
-                required
-                color="info"
-                variant="outlined"
-                id="outlined-basic"
-                label="Title"
-                onChange={(event) => {
-                  setCategory(event.target.value)
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormHelperText
-                sx={{
-                  fontWeight: 500,
-                  margin: "10px 0",
-                  fontSize: 16,
-                  color: "#11142d",
-                }}
-              >
-                Enter Course Video Clip Link
-              </FormHelperText>
-              <TextField
-                fullWidth
-                required
-                id="outlined-basic"
-                color="info"
-                type="url"
-                variant="outlined"
-                onChange={(event) => {
-                  setVideoclip(event.target.value)
-                }}
-              />
-            </FormControl>
-          </Stack>
-
           <CustomButton
             type="submit"
             title={formLoading ? "Submitting..." : "Submit"}
@@ -296,4 +212,4 @@ const Form = ({
   )
 }
 
-export default Form
+export default AddAccomodation

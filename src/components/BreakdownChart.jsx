@@ -4,10 +4,6 @@ import { Box, Typography, useTheme } from "@mui/material"
 import { useGetPoolsQuery, useGetSalesQuery } from "state/api"
 
 const BreakdownChart = ({ isDashboard = false, dataExpected }) => {
-  {
-    /*const { data, isLoading } = useGetSalesQuery()*/
-  }
-
   const { data, isLoading } = useGetPoolsQuery()
 
   const theme = useTheme()
