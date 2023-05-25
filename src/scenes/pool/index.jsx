@@ -4,10 +4,10 @@ import {
   FormHelperText,
   TextField,
   useTheme,
-} from "@mui/material"
-import CustomButton from "components/CustomButton"
-import Header from "components/Header"
-import { useState } from "react"
+} from "@mui/material";
+import CustomButton from "components/CustomButton";
+import Header from "components/Header";
+import { useState } from "react";
 import { useCreatePoolQuery } from "state/poolApi";
 
 const CreatePool = ({
@@ -25,32 +25,25 @@ const CreatePool = ({
   const [tableOfContest, setTableOfContest] = useState("");
   const [createPool, { isLoading }] = useCreatePoolQuery();
 
-  console.log({
-    title,
+  // const attendees = tableOfContest.split(", ");
 
-    description,
-    tableOfContest,
-  });
+  // const poolObj = {
+  //   object: "I attended the conference",
+  //   voteCount: "0",
+  //   percentage: "0",
+  // };
 
-  const attendees = tableOfContest.split(", ");
+  // const poolList = attendees.map((attendee) => {
+  //   return { ...poolObj, object: attendee };
+  // });
 
-  const poolObj = {
-    object: "I attended the conference",
-    voteCount: "0",
-    percentage: "0",
-  };
-
-  const poolList = attendees.map((attendee) => {
-    return { ...poolObj, object: attendee };
-  });
-
-  const onSubmit = () => {
-    const data = {
-      question: title,
-      description: description,
-      poolList: poolList,
-    };
-  };
+  // const onSubmit = () => {
+  //   const data = {
+  //     question: title,
+  //     description: description,
+  //     poolList: poolList,
+  //   };
+  // };
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -160,4 +153,4 @@ const CreatePool = ({
   );
 };
 
-export default CreatePool
+export default CreatePool;
