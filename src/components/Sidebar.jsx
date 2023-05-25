@@ -56,10 +56,7 @@ const navItems = [
     text: "AllCourses",
     icon: <ShoppingCartOutlined />,
   },
-  {
-    text: "Customers",
-    icon: <Groups2Outlined />,
-  },
+
   {
     text: "Transactions",
     icon: <ReceiptLongOutlined />,
@@ -74,6 +71,22 @@ const navItems = [
   },
   {
     text: "Createpool",
+    icon: <AddBusinessOutlined />,
+  },
+  {
+    text: "AllNominees",
+    icon: <AddBusinessOutlined />,
+  },
+  {
+    text: "AllRequest",
+    icon: <AddBusinessOutlined />,
+  },
+  {
+    text: "AcceptRequest",
+    icon: <AddBusinessOutlined />,
+  },
+  {
+    text: "CreateProfile",
     icon: <AddBusinessOutlined />,
   },
   {
@@ -162,7 +175,7 @@ const navItems = [
     text: "Devotion",
     icon: null,
   },
-]
+];
 
 const Sidebar = ({
   isNonMobile,

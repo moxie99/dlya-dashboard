@@ -1,38 +1,42 @@
-import React from "react"
-import Header from "components/Header"
-import FlexBetween from "components/FlexBetween"
+import React, { useEffect } from "react";
+import Header from "components/Header";
+import FlexBetween from "components/FlexBetween";
 import {
   DownloadOutlined,
   Email,
   PointOfSale,
   PersonAdd,
   Traffic,
-} from "@mui/icons-material"
-import { Box, Button, Typography, useTheme, useMediaQuery } from "@mui/material"
-import { DataGrid } from "@mui/x-data-grid"
-import BreakdownChart from "components/BreakdownChart"
-import OverviewChart from "components/OverviewChart"
+} from "@mui/icons-material";
 import {
-  useGetDashboardQuery,
-  useGetEventsQuery,
-  useGetPoolsQuery,
-} from "state/api"
-import StatBox from "components/StatBox"
+  Box,
+  Button,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import BreakdownChart from "components/BreakdownChart";
+import OverviewChart from "components/OverviewChart";
+import { useGetPoolsQuery } from "state/api";
+import StatBox from "components/StatBox";
 
 const Dashboard = () => {
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const { data, isLoading } = useGetPoolsQuery()
+  const { data, isLoading } = useGetPoolsQuery();
 
-  const arr1 = data?.data[0]?.poolList
-  const arr2 = data?.data[1]?.poolList
+  const arr1 = data?.data[0]?.poolList;
+  const arr2 = data?.data[1]?.poolList;
 
-  const poolList = arr1?.concat(arr2)
+  const poolList = arr1?.concat(arr2);
   {
     /*const { data, isLoading } = useGetEventsQuery()
   console.log("data", data)
   */
   }
+
+  console.log("Pools", data);
 
   const colors = [
     theme.palette.secondary[500],
@@ -45,7 +49,7 @@ const Dashboard = () => {
     theme.palette.secondary[100],
     theme.palette.secondary[600],
     theme.palette.secondary[400],
-  ]
+  ];
 
   const fData = poolList?.map(({ object, _id, voteCount }, i) => {
     return {
@@ -53,10 +57,10 @@ const Dashboard = () => {
       label: object,
       value: Number(voteCount),
       color: colors[i],
-    }
-  })
+    };
+  });
 
-  const isNonMediumScreens = useMediaQuery("(min-width: 1200px")
+  const isNonMediumScreens = useMediaQuery("(min-width: 1200px");
 
   const columns = [
     { field: "_id", headerName: "ID", flex: 1 },
@@ -75,7 +79,7 @@ const Dashboard = () => {
       flex: 1,
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
-  ]
+  ];
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -218,7 +222,7 @@ const Dashboard = () => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

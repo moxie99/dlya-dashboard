@@ -1,7 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL2 }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.REACT_APP_BASE_URL2,
+    prepareHeaders: (headers) => {
+      const accessToken = localStorage.getItem("access_token");
+      if (accessToken) {
+        headers.set("Authorization", accessToken);
+      }
+      return headers;
+    },
+  }),
   reducerPath: "adminApi",
   tagTypes: [
     "User",
@@ -19,6 +28,7 @@ export const api = createApi({
     "Accomodation",
     "Feeds",
     "Groups",
+    "Nominees",
   ],
   endpoints: (build) => ({
     getUser: build.query({
@@ -67,7 +77,7 @@ export const api = createApi({
       providesTags: ["Courses"],
     }),
     getPools: build.query({
-      query: () => "/pool/pools",
+      query: () => "pool/",
       providesTags: ["Pools"],
     }),
     getEvents: build.query({
@@ -86,8 +96,12 @@ export const api = createApi({
       query: () => "/chat/get-groups-info",
       providesTags: ["Groups"],
     }),
+    getNominees: build.query({
+      query: (id) => `pool/nominees/${id}`,
+      providesTags: ["Nominees"],
+    }),
   }),
-})
+});
 
 export const {
   useGetUserQuery,
@@ -105,4 +119,5 @@ export const {
   useGetAccommodationQuery,
   useGetFeedsQuery,
   useGetGroupsQuery,
-} = api
+  useGetNomineesQuery,
+} = api;

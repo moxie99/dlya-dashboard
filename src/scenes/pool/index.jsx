@@ -8,6 +8,7 @@ import {
 import CustomButton from "components/CustomButton"
 import Header from "components/Header"
 import { useState } from "react"
+import { useCreatePoolQuery } from "state/poolApi";
 
 const CreatePool = ({
   type,
@@ -18,17 +19,38 @@ const CreatePool = ({
   onFinishHandler,
   propertyImage,
 }) => {
-  const theme = useTheme()
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [tableOfContest, setTableOfContest] = useState("")
+  const theme = useTheme();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [tableOfContest, setTableOfContest] = useState("");
+  const [createPool, { isLoading }] = useCreatePoolQuery();
 
   console.log({
     title,
 
     description,
     tableOfContest,
-  })
+  });
+
+  const attendees = tableOfContest.split(", ");
+
+  const poolObj = {
+    object: "I attended the conference",
+    voteCount: "0",
+    percentage: "0",
+  };
+
+  const poolList = attendees.map((attendee) => {
+    return { ...poolObj, object: attendee };
+  });
+
+  const onSubmit = () => {
+    const data = {
+      question: title,
+      description: description,
+      poolList: poolList,
+    };
+  };
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -67,7 +89,7 @@ const CreatePool = ({
               id="outlined-basic"
               label="Pool Title"
               onChange={(event) => {
-                setTitle(event.target.value)
+                setTitle(event.target.value);
               }}
             />
           </FormControl>
@@ -98,7 +120,7 @@ const CreatePool = ({
                 padding: 10,
               }}
               onChange={(event) => {
-                setDescription(event.target.value)
+                setDescription(event.target.value);
               }}
             />
           </FormControl>
@@ -121,7 +143,7 @@ const CreatePool = ({
               color="info"
               variant="outlined"
               onChange={(event) => {
-                setTableOfContest(event.target.value)
+                setTableOfContest(event.target.value);
               }}
             />
           </FormControl>
@@ -135,7 +157,7 @@ const CreatePool = ({
         </form>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 export default CreatePool

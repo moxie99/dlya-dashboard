@@ -1,12 +1,20 @@
 import React, { useState } from "react"
 import { Box, useMediaQuery } from "@mui/material"
-import { useGetCoursesQuery, useGetProductsQuery } from "state/api"
-import Header from "components/Header"
-import Product from "components/Product"
+import {
+  useGetCoursesQuery,
+  useGetPoolsQuery,
+  useGetProductsQuery,
+} from "state/api";
+import Header from "components/Header";
+import Product from "components/Product";
 const Products = () => {
-  const { data, isLoading } = useGetCoursesQuery()
+  const { data, isLoading } = useGetCoursesQuery();
 
-  const isNonMobile = useMediaQuery("(min-width: 1000px)")
+  const { data: poolData } = useGetPoolsQuery();
+
+  console.log("Pools Data", poolData);
+
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="COURSES" subtitle="See your list of courses" />
@@ -59,7 +67,7 @@ const Products = () => {
         <>Loading...</>
       )}
     </Box>
-  )
-}
+  );
+};
 
 export default Products
