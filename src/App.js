@@ -38,6 +38,15 @@ function App() {
       setAccessToken(storedAccessToken);
     }
   }, []);
+  useEffect(() => {
+    document.body.style.zoom = "75%";
+
+    // Clean up the effect
+    return () => {
+      document.body.style.zoom = "100%";
+    };
+  }, []);
+
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (

@@ -36,7 +36,7 @@ import {
 } from "@mui/icons-material"
 
 import { useLocation, useNavigate } from "react-router-dom"
-import profileImage from "../assets/profile_image.jpg"
+import profileImage from "../assets/DLYA.png";
 import FlexBetween from "./FlexBetween"
 
 const navItems = [
